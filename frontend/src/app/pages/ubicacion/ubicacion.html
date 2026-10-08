@@ -1,1 +1,66 @@
-<p>ubicacion works!</p>
+<section class="ubicacion" aria-labelledby="ubi-titulo">
+  <div class="ubicacion__media" aria-hidden="true">
+    <img class="ubicacion__fondo" src="img/ubicacion.jpg" alt="" width="1195" height="896" />
+    <div class="ubicacion__velo"></div>
+  </div>
+
+  <div class="ubicacion__contenido">
+    <header class="ubicacion__encabezado">
+      <h2 id="ubi-titulo">Cómo llegar</h2>
+    </header>
+
+    <div class="ubicacion__grid">
+      <div class="ubicacion__panel">
+        <div class="ubicacion__bloque">
+          <h3>Ubicación</h3>
+          <p>{{ direccionLinea1 }}<br />{{ direccionLinea2 }}</p>
+        </div>
+
+        <div class="ubicacion__acciones">
+          <a class="btn btn--lleno" routerLink="/contacto">Reservar</a>
+          <a class="btn btn--borde" target="_blank" rel="noopener" [href]="comoLlegarUrl">
+            Cómo llegar
+          </a>
+        </div>
+      </div>
+
+      <div
+        class="ubicacion__mapa"
+        [class.activo]="mapaActivo()"
+        (click)="mapaActivo.set(true)"
+        (mouseleave)="mapaActivo.set(false)"
+      >
+        <div class="ubicacion__vistas" role="group" aria-label="Tipo de mapa">
+          <button
+            type="button"
+            [class.activo]="vista() === 'mapa'"
+            [attr.aria-pressed]="vista() === 'mapa'"
+            (click)="cambiarVista('mapa')"
+          >
+            Mapa
+          </button>
+          <button
+            type="button"
+            [class.activo]="vista() === 'satelite'"
+            [attr.aria-pressed]="vista() === 'satelite'"
+            (click)="cambiarVista('satelite')"
+          >
+            Satélite
+          </button>
+        </div>
+
+        @if (!mapaActivo()) {
+          <span class="ubicacion__aviso">Hacé clic para mover el mapa</span>
+        }
+
+        <iframe
+          title="Mapa de ubicación de Los Chañaritos"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          allowfullscreen
+          [src]="mapaUrl()"
+        ></iframe>
+      </div>
+    </div>
+  </div>
+</section>
