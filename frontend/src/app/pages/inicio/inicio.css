@@ -1,0 +1,227 @@
+:host {
+    --vino:   #7b212e;
+    --oliva:  #606b3c;
+    --crema:  #f6f4f0;
+    --dorado: #e8c23a;
+    --serif: "Playfair Display", Georgia, serif;
+    --sans:  "Montserrat", system-ui, sans-serif;
+}
+
+.etiqueta-dorada {
+    font-family: var(--sans);
+    font-size: large;
+    letter-spacing: 5px;
+    font-style: italic;
+    text-transform: uppercase;
+    color: var(--dorado);
+}
+
+.italic-texto{
+    font-family: var(--sans);
+    font-size: 16px;
+    font-style: italic;
+    color: var(--crema);
+    letter-spacing:3px;
+    font-weight: bold;
+}
+
+.titulo-grande{
+    font-family: var(--serif);
+    font-size: 50px;
+    color: var(--crema);
+}
+
+.titulo-mediano {
+    font-family: var(--serif);
+    font-size: 40px;
+    color: var(--crema);
+}
+
+.titulo-chico{
+    font-family: var(--serif);
+    font-size: 30px;
+    color: var(--crema);
+}
+
+.texto{
+    font-family: var(--sans);
+    font-size: 16px;
+    color: var(--crema);
+}
+
+.texto-dos{
+    font-family: var(--sans);
+    font-size: 20px;
+    color: var(--crema);
+}
+
+.icono {
+    color: var(--dorado);
+    width: 40px;
+    height: 40px;
+}
+
+.negrita{
+    font-weight: bold;
+}
+
+.resaltado{
+    color: var(--dorado);
+    font-weight: bold;
+}
+
+.boton {
+    font-family: var(--sans);
+    font-size: 20px;
+    display: inline-block;
+    margin-top: 40px;
+    padding: 20px;
+    background: var(--oliva);
+    color: var(--crema);
+    text-decoration: none;
+    border: 2px solid var(--crema);
+    border-radius: 5px;
+    transition: transform 0.4s, background 0.4s;
+}
+
+.boton:hover{
+    background: var(--dorado);
+    border: 2px solid var(--crema);
+    transform: translateY(-5px);
+}
+
+/* seccion hero */
+.hero {
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 32px 150px;
+
+    background: linear-gradient(to bottom, rgba(94, 34, 43, 0.65) 0% , rgba(94, 34, 43, 0.25) 50%, rgba(94, 34, 43, 0.1) 100%),
+    url("/img/ubicacion.jpg");
+    background-size: cover;
+    background-position: center;
+}
+
+.hero-contenido {
+    max-width: 720px;
+    color: var(--crema);
+    padding: 20px;
+    border-radius: 90px;
+    backdrop-filter: blur(2px);
+
+}
+
+
+@media (max-width: 768px){
+    .hero{
+        padding: 32px 30px;
+    }
+}
+
+/* seccion beneficios */
+.beneficios {
+    background: var(--crema);
+    padding: 40px 40px;
+}
+
+.beneficios-grid {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+}
+
+.beneficio{
+    text-align: center;
+    max-width: 350px;
+    background: var(--oliva);
+    border-radius: 5px;
+    margin: 0 auto;
+    padding: 30px 10px 10px;
+    transition: transform 0.4s;
+}
+
+.beneficio:hover {
+    transform: translateY(-8px);
+}
+
+@media (min-width: 768px){
+    .beneficios{
+        padding: 50px 50px;
+    }
+    .beneficios-grid{
+        grid-template-columns: repeat(3, 1fr);
+        gap: 60px;
+    }
+}
+
+/* seccion sobre los chañaritos */
+.sobre-lc{
+    background: var(--oliva);
+    padding: 80px 20px;
+}
+
+.sobre-lc-grid{
+    max-width: 1100px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+}
+
+.sobre-lc-imagen{
+    width: 100%;
+    height: 100%;
+    max-height: 420px;
+    object-fit: cover;
+    border-radius: 55px;
+}
+
+
+@media (min-width: 768px){
+    .sobre-lc-grid{
+        grid-template-columns: 1fr 1fr;
+        gap: 40px;
+    }
+}
+
+/* seccion contactanos */
+.contactanos {
+    background: var(--crema);
+    padding: 60px 20px;
+}
+
+.contactanos-tarjeta {
+    margin: 0 auto;
+    max-width: 1200px;
+    display: grid;
+    grid-template-columns: 1fr;
+    background: var(--vino);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.imagen-contacto-tarjeta{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contactanos-contenido{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+@media(min-width : 900px) {
+    .contactanos-tarjeta{
+        grid-template-columns: 1fr 2fr;
+    }
+}
