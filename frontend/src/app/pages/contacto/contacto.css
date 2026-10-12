@@ -1,0 +1,310 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+:host {
+  --vino:   #7b212e;
+  --oliva:  #606b3c;
+  --crema:  #f6f4f0;
+  --dorado: #e8c23a;
+  --arena:  #d9d2b8;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;     /* Centrado horizontal */
+  justify-content: center;  /* Centrado vertical */
+  width: 100%;
+  min-height: calc(100vh - 75px);
+  font-family: 'Montserrat', sans-serif;
+  box-sizing: border-box;
+  padding: 40px 20px;
+
+
+  background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)),
+              url('../../../../public/img/chañaritos1.jpg') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
+}
+
+.main-container {
+  max-width: 1050px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 45px; 
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  box-sizing: border-box;
+
+  background-color: rgba(246, 244, 240, 0.703);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.25);
+}
+
+.header-section {
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: 35px;
+}
+
+.header-section h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 46px; 
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 14px;
+}
+
+.sub-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; 
+  color: #000000;
+  line-height: 1.6;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 40px;
+  align-items: start;
+}
+
+
+.form-container h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px; 
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-top: 0;
+  margin-bottom: 22px;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  font-size: 15px; 
+  font-weight: 600;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.required {
+  color: var(--vino);
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px; 
+  border: 1px solid var(--arena);
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 15px; 
+  background-color: #ffffff;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  border-color: var(--vino);
+  box-shadow: 0 0 0 2px rgba(123, 33, 46, 0.1);
+}
+
+.invalid-input {
+  border-color: #c0392b !important;
+  background-color: #fdf3f2 !important;
+}
+
+.error-text {
+  color: #c0392b;
+  font-size: 13px; 
+  margin-top: 5px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.alert-danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 14px;
+  border-radius: 4px;
+  margin-bottom: 20px;
+  font-size: 15px;
+}
+
+.btn-submit {
+  background-color: var(--oliva);
+  color: var(--arena);
+  border: 1px solid #ccc;
+  padding: 12px 28px;
+  font-size: 15px; 
+  font-weight: 600;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+.btn-submit:hover {
+  background-color: var(--vino);
+  border-color: var(--dorado);
+}
+
+.info-card {
+  background-color: var(--oliva);
+  color: var(--crema);
+  padding: 42px 28px;
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.info-group {
+  margin-bottom: 32px;
+}
+
+.info-group:last-child {
+  margin-bottom: 0;
+}
+
+.info-card h3 {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 13.5px; 
+  letter-spacing: 1.8px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--dorado);
+}
+
+.info-card p {
+  font-size: 18px; 
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.contact-link-btn,
+.contact-link {
+  background: transparent;
+  border: none;
+  color: var(--crema);
+  font-family: 'Playfair Display', serif;
+  font-size: 18px; 
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contact-link-btn:hover,
+.contact-link:hover {
+  color: var(--dorado);
+}
+
+.icon-svg {
+  width: 20px; 
+  height: 20px;
+  fill: currentColor;
+}
+
+
+.wsp-link {
+  color: var(--oliva); 
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.wsp-link::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--dorado); 
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  transform-origin: bottom right;
+}
+
+.wsp-link:hover {
+  color: var(--vino); 
+}
+
+.wsp-link:hover::after {
+  background-color: var(--vino); 
+}
+
+.phone-number {
+  position: relative;
+  padding-bottom: 1px;
+}
+
+.phone-number::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: 0;
+  left: 0;
+  background-color: var(--crema);
+  opacity: 0.5;
+  transition: background-color 0.2s, opacity 0.2s;
+}
+
+.contact-link-btn:hover .phone-number::after {
+  background-color: var(--dorado);
+  opacity: 1;
+}
+
+@media (max-width: 768px) {
+  :host {
+    background-attachment: scroll;
+    padding: 20px 10px;
+    min-height: auto;
+  }
+
+  .main-container {
+    padding: 30px 20px;
+    border-radius: 8px;
+  }
+
+  .header-section h1 {
+    font-size: 34px;
+  }
+
+  .sub-text {
+    font-size: 15px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .btn-submit {
+    width: 100%;
+  }
+
+  .info-card {
+    padding: 30px 20px;
+  }
+}
