@@ -1,1 +1,152 @@
-<p>cabanas works!</p>
+<section class="cabanas-page">
+
+  <header class="cabanas-header">
+    <span class="subtitulo">COMPLEJO TURÍSTICO</span>
+    <h1>Nuestras cabañas</h1>
+    <p>
+      Encontrá la opción ideal para disfrutar tu estadía
+      en Los Chañaritos.
+    </p>
+  </header>
+
+  <div class="cabanas-grid">
+
+    @for (propuesta of propuestas; track propuesta.id) {
+      <article class="cabana-card">
+
+        <div class="cabana-imagen">
+          <img [src]="propuesta.imagen" [alt]="propuesta.titulo" /> 
+          <span class="capacidad">
+            {{ propuesta.capacidad }}
+          </span>
+        </div>
+
+        <div class="cabana-contenido">
+          <h2>{{ propuesta.titulo }}</h2>
+          <p>{{ propuesta.descripcion }}</p>
+
+          <button
+            class="btn-consultar"
+            type="button"
+            (click)="abrirCalendario(propuesta.id)">
+            Consultar disponibilidad
+          </button>
+        </div>
+
+      </article>
+    }
+
+  </div>
+
+  @if (calendarioAbierto !== null) {
+    <div
+      class="modal-fondo"
+      (click)="cerrarCalendario()">
+
+      <section
+        class="calendario-modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="titulo-calendario"
+        (click)="$event.stopPropagation()">
+
+        <button
+          class="btn-cerrar"
+          type="button"
+          aria-label="Cerrar calendario"
+          (click)="cerrarCalendario()">
+          &times;
+        </button>
+
+        <h2 id="titulo-calendario">
+          Consultar disponibilidad
+        </h2>
+
+        <p class="calendario-descripcion">
+          {{ propuestas[calendarioAbierto - 1].titulo }}
+        </p>
+
+        <div class="calendario-navegacion">
+
+          <button
+            type="button"
+            aria-label="Mes anterior"
+            [disabled]="!puedeIrAlMesAnterior"
+            (click)="cambiarMes(-1)">
+            &#10094;
+          </button>
+
+          <h3>{{ nombreMes }}</h3>
+
+          <button
+            type="button"
+            aria-label="Mes siguiente"
+            (click)="cambiarMes(1)">
+            &#10095;
+          </button>
+
+        </div>
+
+        <div class="calendario-grilla">
+
+          @for (
+            diaSemana of ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb'];
+            track diaSemana
+          ) {
+            <div class="dia-semana">
+              {{ diaSemana }}
+            </div>
+          }
+
+          @for (dia of obtenerDiasDelMes(); track $index) {
+
+            @if (dia === null) {
+              <div class="dia-vacio"></div>
+            } @else {
+
+              <button
+                type="button"
+                class="dia-calendario"
+                [disabled]="esFechaPasada(dia)"
+                [class.dia-pasado]="esFechaPasada(dia)"
+                [class.dia-seleccionado]="
+                  fechaSeleccionada ===
+                  (
+                    dia.toString().padStart(2, '0') + '/' +
+                    (mesActual + 1).toString().padStart(2, '0') + '/' +
+                    anioActual
+                  )
+                "
+                (click)="seleccionarFecha(dia)">
+
+                {{ dia }}
+
+              </button>
+
+            }
+
+          }
+
+        </div>
+
+        @if (fechaSeleccionada) {
+          <p class="fecha-elegida">
+            Fecha seleccionada:
+            <strong>{{ fechaSeleccionada }}</strong>
+          </p>
+        } @else {
+          <p class="ayuda-calendario">
+            Seleccioná tu fecha de estancia.
+          </p>
+        }
+
+        <p class="nota-calendario">
+          La selección es orientativa. La disponibilidad real deberá confirmarse.
+        </p>
+
+      </section>
+
+    </div>
+  }
+
+</section>
