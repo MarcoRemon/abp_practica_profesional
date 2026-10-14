@@ -58,7 +58,7 @@ export class AdminReservas implements OnInit {
       ? 'confirmar'
       : 'cancelar';
 
-    if (!confirm(`¿Querés ${accion} la reserva ${reserva.id}?`)) {
+    if (!confirm(`¿Querés ${accion} la reserva ${reserva.codigoReserva || reserva.id}?`)) {
       return;
     }
 
@@ -67,7 +67,6 @@ export class AdminReservas implements OnInit {
     this.mensaje = '';
 
     try {
-      // Volvemos a consultar para no actuar sobre datos desactualizados.
       const actuales = await this.reservasService.listar();
       const actual = actuales.find(r => r.id === reserva.id);
 
@@ -87,7 +86,7 @@ export class AdminReservas implements OnInit {
         estado
       );
 
-      this.mensaje = `Reserva ${reserva.id} actualizada correctamente.`;
+      this.mensaje = `Reserva ${reserva.codigoReserva || reserva.id} actualizada correctamente.`;
 
       await this.cargarReservas();
 

@@ -5,6 +5,7 @@ import { firstValueFrom } from 'rxjs';
 export type EstadoReserva = 'pendiente_pago' | 'confirmada' | 'cancelada';
 export interface Reserva {
   id: string;
+  codigoReserva: string;
   cabaniaId: string;
   nombre: string;
   apellido: string;
@@ -39,8 +40,10 @@ export class ReservasService {
     );
   }
 
-  crear(reserva: Reserva): Promise<Reserva> {
-    return firstValueFrom(this.http.post<Reserva>(this.url, reserva));
+  crear(reserva: Omit<Reserva, 'id'>): Promise<Reserva> {
+    return firstValueFrom(
+      this.http.post<Reserva>(this.url, reserva)
+    );
   }
 
   activa(reserva: Reserva): boolean {

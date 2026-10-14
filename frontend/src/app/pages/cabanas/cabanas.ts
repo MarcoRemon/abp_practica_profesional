@@ -31,29 +31,29 @@ export class Cabanas {
 
   fechaSeleccionada: string | null = null;
 
-propuestas = [
-  {
-    id: 1,
-    titulo: 'Cabaña para 2 a 4 personas',
-    capacidad: '2 a 4 huéspedes',
-    descripcion: 'Ideal para parejas, familias pequeñas o grupos reducidos.',
-    imagen: '/img/entrada.png',
-  },
-  {
-    id: 2,
-    titulo: 'Cabaña para 4 a 6 personas',
-    capacidad: '4 a 6 huéspedes',
-    descripcion: 'Una opción cómoda para familias o grupos medianos.',
-    imagen: "/img/pileta.png",
-  },
-  {
-    id: 3,
-    titulo: 'Cabaña para 6 a 8 personas',
-    capacidad: '6 a 8 huéspedes',
-    descripcion: 'Pensada para familias numerosas o grupos grandes.',
-    imagen: "/img/fuera.png",
-  },
-];
+  propuestas = [
+    {
+      id: 1,
+      titulo: 'Cabaña para 2 a 4 personas',
+      capacidad: '2 a 4 huéspedes',
+      descripcion: 'Ideal para parejas, familias pequeñas o grupos reducidos.',
+      imagen: '/img/entrada.png',
+    },
+    {
+      id: 2,
+      titulo: 'Cabaña para 4 a 6 personas',
+      capacidad: '4 a 6 huéspedes',
+      descripcion: 'Una opción cómoda para familias o grupos medianos.',
+      imagen: "/img/pileta.png",
+    },
+    {
+      id: 3,
+      titulo: 'Cabaña para 6 a 8 personas',
+      capacidad: '6 a 8 huéspedes',
+      descripcion: 'Pensada para familias numerosas o grupos grandes.',
+      imagen: "/img/fuera.png",
+    },
+  ];
 
   async abrirCalendario(id: number): Promise<void> {
     this.calendarioAbierto = id;
@@ -228,16 +228,25 @@ propuestas = [
       }
       const ahora = new Date();
       const limite = new Date(ahora.getTime() + 48 * 60 * 60 * 1000);
-      const id = `RES-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
-      const nueva: Reserva = {
-        id, cabaniaId: String(this.calendarioAbierto), nombre: this.nombre.trim(), apellido: this.apellido.trim(),
-        email: this.email.trim(), telefono: this.telefono.trim(), huespedes: this.huespedes,
-        fechaEntrada: this.fechaEntrada, fechaSalida: this.fechaSalida,
-        estado: 'pendiente_pago', fechaCreacion: ahora.toISOString(), fechaLimitePago: limite.toISOString()
+      const codigoReserva = `RES-${crypto.randomUUID().slice(0, 8).toUpperCase()}`;
+      const nueva: Omit<Reserva, 'id'> = {
+        codigoReserva,
+        cabaniaId: String(this.calendarioAbierto),
+        nombre: this.nombre.trim(),
+        apellido: this.apellido.trim(),
+        email: this.email.trim(),
+        telefono: this.telefono.trim(),
+        huespedes: this.huespedes,
+        fechaEntrada: this.fechaEntrada,
+        fechaSalida: this.fechaSalida,
+        estado: 'pendiente_pago',
+        fechaCreacion: ahora.toISOString(),
+        fechaLimitePago: limite.toISOString()
       };
-      await this.reservasService.crear(nueva);
-      this.reservas.push(nueva);
-      this.codigoReserva = id;
+      const reservaGuardada = await this.reservasService.crear(nueva);
+
+      this.reservas.push(reservaGuardada);
+      this.codigoReserva = reservaGuardada.codigoReserva;
     } catch {
       this.error = 'No se pudo guardar la reserva. Verificá que JSON Server esté funcionando.';
     } finally { this.guardando = false; this.cdr.markForCheck(); }
