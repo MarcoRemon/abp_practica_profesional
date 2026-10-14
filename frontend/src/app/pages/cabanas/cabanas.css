@@ -313,3 +313,16 @@
   color: #b3b6a8;
   cursor: not-allowed;
 }
+/* Formulario de reservas MVP */
+.reserva-form { display: grid; gap: 12px; margin-top: 16px; }
+.reserva-form label { display: grid; gap: 4px; font-weight: 600; }
+.reserva-form input { width: 100%; padding: 9px; border: 1px solid #aaa; border-radius: 5px; }
+.reserva-form button { background: #556b36; color: white; padding: 12px; border: 0; border-radius: 5px; cursor: pointer; }
+.reserva-form button:disabled { opacity: .5; }
+.reserva-error { color: #a21b1b; font-weight: 700; }
+.reserva-panel { background: #e3e8d6; padding: 16px; border-radius: 8px; margin-top: 16px; }
+
+/* Ajustes de integración MVP */
+.cabana-contenido, .cabana-contenido * { box-sizing: border-box; }
+.btn-consultar { display: block; width: 100%; max-width: 100%; }
+.reserva-form input { box-sizing: border-box; max-width: 100%; min-width: 0; }

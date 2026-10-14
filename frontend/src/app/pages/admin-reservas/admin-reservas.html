@@ -1,0 +1,90 @@
+<section class="admin-container">
+
+    <div class="admin-header">
+        <div>
+            <h1>Administración de reservas</h1>
+            <p>Gestión de reservas de Los Chañaritos</p>
+        </div>
+
+        <button class="btn-actualizar" (click)="cargarReservas()" [disabled]="cargando || procesandoId !== null">
+            Actualizar
+        </button>
+    </div>
+
+    <p *ngIf="error" class="mensaje-error">
+        {{ error }}
+    </p>
+
+    <p *ngIf="mensaje" class="mensaje-exito">
+        {{ mensaje }}
+    </p>
+
+    <p *ngIf="cargando">Cargando reservas...</p>
+
+    <div class="tabla-contenedor" *ngIf="!cargando">
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Código</th>
+                    <th>Cliente</th>
+                    <th>Cabaña</th>
+                    <th>Entrada</th>
+                    <th>Salida</th>
+                    <th>Estado</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr *ngFor="let reserva of reservas">
+
+                    <td>{{ reserva.id }}</td>
+
+                    <td>
+                        {{ reserva.nombre }} {{ reserva.apellido }}
+                    </td>
+
+                    <td>Cabaña {{ reserva.cabaniaId }}</td>
+
+                    <td>{{ reserva.fechaEntrada }}</td>
+                    <td>{{ reserva.fechaSalida }}</td>
+
+                    <td>
+                        <span class="estado" [ngClass]="reserva.estado">
+
+                            {{ reserva.estado === 'pendiente_pago'
+                            ? 'Pendiente de pago'
+                            : reserva.estado === 'confirmada'
+                            ? 'Confirmada'
+                            : 'Cancelada' }}
+                        </span>
+                    </td>
+
+                    <td>
+                        <div class="acciones" *ngIf="reserva.estado === 'pendiente_pago'">
+
+                            <button class="btn-confirmar" [disabled]="procesandoId !== null ||
+                  !reservasService.activa(reserva)" (click)="cambiarEstado(reserva, 'confirmada')">
+                                Confirmar
+                            </button>
+
+                            <button class="btn-cancelar" [disabled]="procesandoId !== null"
+                                (click)="cambiarEstado(reserva, 'cancelada')">
+                                Cancelar
+                            </button>
+
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <p *ngIf="reservas.length === 0" class="sin-reservas">
+            Todavía no hay reservas registradas.
+        </p>
+
+    </div>
+
+</section>

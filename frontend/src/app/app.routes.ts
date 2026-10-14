@@ -32,6 +32,12 @@ export const routes: Routes = [
             import('./pages/contacto/contacto').then(m => m.Contacto)
     },
     {
+        path: 'admin/reservas',
+        loadComponent: () =>
+            import('./pages/admin-reservas/admin-reservas')
+                .then(m => m.AdminReservas)
+    },
+    {
         path: '**',
         redirectTo: 'inicio'
     }

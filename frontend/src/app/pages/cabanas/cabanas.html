@@ -107,8 +107,8 @@
               <button
                 type="button"
                 class="dia-calendario"
-                [disabled]="esFechaPasada(dia)"
-                [class.dia-pasado]="esFechaPasada(dia)"
+                [disabled]="cargando || esFechaPasada(dia) || fechaBloqueada(dia)"
+                [class.dia-pasado]="esFechaPasada(dia) || fechaBloqueada(dia)"
                 [class.dia-seleccionado]="
                   fechaSeleccionada ===
                   (
@@ -129,20 +129,29 @@
 
         </div>
 
-        @if (fechaSeleccionada) {
-          <p class="fecha-elegida">
-            Fecha seleccionada:
-            <strong>{{ fechaSeleccionada }}</strong>
-          </p>
+        @if (codigoReserva) {
+          <div class="reserva-panel" role="status">
+            <h3>¡Solicitud registrada!</h3>
+            <p>Código de reserva: <strong>{{ codigoReserva }}</strong></p>
+            <p>Estado: pendiente de pago. Tenés 48 horas para coordinar la seña y enviar el comprobante al establecimiento mediante la página de Contacto. La confirmación definitiva se realiza cuando se verifica el pago.</p>
+            <p>Guardá este código para identificar tu reserva.</p>
+          </div>
         } @else {
-          <p class="ayuda-calendario">
-            Seleccioná tu fecha de estancia.
-          </p>
+          <p class="ayuda-calendario">Elegí primero el día de entrada y después el de salida. Los días ocupados están deshabilitados.</p>
+          <p class="fecha-elegida">Entrada: {{ fechaEntrada || 'Sin elegir' }} · Salida: {{ fechaSalida || 'Sin elegir' }}</p>
+          @if (cargando) { <p>Consultando disponibilidad...</p> }
+          @if (error) { <p class="reserva-error" role="alert">{{ error }}</p> }
+          @if (fechaEntrada && fechaSalida && !cargando) {
+            <form class="reserva-form" (ngSubmit)="reservar()">
+              <label>Nombre <input name="nombre" [(ngModel)]="nombre" required /></label>
+              <label>Apellido <input name="apellido" [(ngModel)]="apellido" required /></label>
+              <label>Email <input name="email" type="email" [(ngModel)]="email" required email /></label>
+              <label>Teléfono <input name="telefono" type="tel" [(ngModel)]="telefono" required /></label>
+              <label>Huéspedes <input name="huespedes" type="number" min="1" [max]="calendarioAbierto === 1 ? 4 : calendarioAbierto === 2 ? 6 : 8" [(ngModel)]="huespedes" required /></label>
+              <button type="submit" [disabled]="guardando">{{ guardando ? 'Guardando...' : 'Solicitar reserva' }}</button>
+            </form>
+          }
         }
-
-        <p class="nota-calendario">
-          La selección es orientativa. La disponibilidad real deberá confirmarse.
-        </p>
 
       </section>
 

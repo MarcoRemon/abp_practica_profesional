@@ -1,5 +1,51 @@
 {
-    "cabanias": [],
-    "reservas": [],
-    "contactos": []
+  "cabanias": [
+    {
+      "id": "1",
+      "nombre": "Cabaña para 2 a 4 personas",
+      "capacidad": 4
+    },
+    {
+      "id": "2",
+      "nombre": "Cabaña para 4 a 6 personas",
+      "capacidad": 6
+    },
+    {
+      "id": "3",
+      "nombre": "Cabaña para 6 a 8 personas",
+      "capacidad": 8
+    }
+  ],
+  "reservas": [
+    {
+      "id": "T9sfH2AXjfQ",
+      "cabaniaId": "1",
+      "nombre": "marco",
+      "apellido": "remonsito",
+      "email": "marcoremon@gmail.com",
+      "telefono": "321312312",
+      "huespedes": 2,
+      "fechaEntrada": "2026-10-13",
+      "fechaSalida": "2026-10-30",
+      "estado": "confirmada",
+      "fechaCreacion": "2026-10-14T02:13:45.146Z",
+      "fechaLimitePago": "2026-10-16T02:13:45.146Z"
+    },
+    {
+      "id": "60OVArUWP4o",
+      "cabaniaId": "2",
+      "nombre": "xd",
+      "apellido": "dx",
+      "email": "asdsad",
+      "telefono": "03515292476",
+      "huespedes": 2,
+      "fechaEntrada": "2026-10-13",
+      "fechaSalida": "2026-10-22",
+      "estado": "pendiente_pago",
+      "fechaCreacion": "2026-10-14T02:22:28.293Z",
+      "fechaLimitePago": "2026-10-16T02:22:28.293Z"
+    }
+  ],
+  "contactos": [],
+  "$schema": "./node_modules/json-server/schema.json"
 }
