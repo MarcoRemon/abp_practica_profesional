@@ -1,10 +1,16 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&display=swap');
 
 :host {
-  --vino:   #7b212e;
+  --vino: #7b212e;
   --dorado: #e8c23a;
   display: block;
   width: 100%;
+}
+
+.logo img {
+  width: 90px;
+  height: auto;
+  object-fit: contain;
 }
 
 .navbar {
@@ -23,7 +29,8 @@
   padding: 0 20px;
 }
 
-.nav-left, .nav-right {
+.nav-left,
+.nav-right {
   display: flex;
   gap: 20px;
   align-items: center;
@@ -62,7 +69,8 @@
     order: -1;
   }
 
-  .nav-left, .nav-right {
+  .nav-left,
+  .nav-right {
     gap: 15px;
     flex-wrap: wrap;
     justify-content: center;
